@@ -1,0 +1,45 @@
+div.container {
+  padding: 125px 25px;
+
+  form {
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid black;
+
+    > div {
+      width: 50%;
+      margin-bottom: 25px;
+      display: flex;
+      align-items: center;
+
+      mat-form-field {
+        flex: 1;
+
+        ::ng-deep.mat-form-field-wrapper {
+          padding: 0;
+        }
+      }
+
+      span {
+        margin-left: 10px;
+      }
+    }
+  }
+
+  .buttons-container {
+    margin: 25px 0 10px;
+
+    > button:last-child:not(:first-child) {
+      margin-left: 10px;
+    }
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+
+    td {
+      border: 1px solid black;
+    }
+  }
+}

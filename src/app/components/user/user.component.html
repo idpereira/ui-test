@@ -1,0 +1,20 @@
+<div class="user-row">
+  <span *ngIf="!isEditing">{{user?.name}}</span>
+  <form [formGroup]="userForm" *ngIf="isEditing">
+    <mat-form-field appearance="outline">
+      <input matInput formControlName="name">
+    </mat-form-field>
+  </form>
+  <div class="buttons-container">
+    <ng-container *ngIf="!isEditing; else editing">
+      <button mat-raised-button color="primary" class="edit-button" (click)="editUser()">Edit</button>
+      <button mat-raised-button color="warn" class="delete-button" (click)="deleteUser()">Delete</button>
+    </ng-container>
+    <ng-template #editing>
+      <button mat-raised-button color="primary" class="save-button" (click)="updateUser()"
+              [disabled]="userForm.get('name').value === ''">
+        Save
+      </button>
+    </ng-template>
+  </div>
+</div>

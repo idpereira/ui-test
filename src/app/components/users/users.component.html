@@ -1,0 +1,36 @@
+<div class="container">
+  <form [formGroup]="addUserForm">
+    <mat-label>Add New User</mat-label>
+    <div>
+      <mat-form-field appearance="outline">
+        <input matInput formControlName="name">
+      </mat-form-field>
+      <span>
+        <button mat-raised-button id="add" color="primary" (click)="addUser()"
+                [disabled]="addUserForm.get('name').value === ''">
+          Add
+        </button>
+      </span>
+    </div>
+  </form>
+
+  <ng-container *ngIf="users?.length > 0">
+    <div class="buttons-container">
+      <ng-container *ngIf="!editAllUsers?.value; else editing">
+        <button mat-raised-button id="edit-all" color="primary" (click)="editAll()">Edit All</button>
+        <button mat-raised-button id="delete-all" color="warn" (click)="deleteAll()">Delete All</button>
+      </ng-container>
+      <ng-template #editing>
+        <button mat-raised-button id="save-all" color="primary" (click)="saveAll()">Save All</button>
+      </ng-template>
+    </div>
+
+    <table>
+      <tr *ngFor="let user of users; index as i">
+        <td>
+          <app-user [user]="user" [edit]="editAllUsers" (userModified)="userModified($event, i)"></app-user>
+        </td>
+      </tr>
+    </table>
+  </ng-container>
+</div>
